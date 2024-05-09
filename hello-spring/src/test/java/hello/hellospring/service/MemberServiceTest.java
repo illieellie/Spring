@@ -4,6 +4,7 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.repository.MemoryMemberRepositoryTest;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.AfterEach;
@@ -12,11 +13,20 @@ class MemberServiceTest {
 
     // Test명은 한글로 적어도됨
 
-    MemberService memberService = new MemberService();
-    // test 간에 영향을 받지 않도록 메모리 clear를 해줘야함
-    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
+    // memeberService의 memberRepository와 밑의 memberRepository가 다름
+    // 동일하게 만들어줘야함
+    MemberService memberService;
+    MemoryMemberRepository memberRepository;
 
-     @AfterEach // callback 메서드 : 메서드 끝날떄마다 수행
+    @BeforeEach
+    public void beforeEach(){
+        memberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memberRepository);
+
+    }
+
+    // test 간에 영향을 받지 않도록 메모리 clear를 해줘야함
+    @AfterEach // callback 메서드 : 메서드 끝날떄마다 수행
     public void afterEach() {
          memberRepository.clearStore();
          // DB 값 날려줌
