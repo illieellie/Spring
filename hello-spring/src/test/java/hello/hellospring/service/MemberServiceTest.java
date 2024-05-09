@@ -1,21 +1,33 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemoryMemberRepository;
+import hello.hellospring.repository.MemoryMemberRepositoryTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.AfterEach;
 
 class MemberServiceTest {
 
     // Test명은 한글로 적어도됨
 
     MemberService memberService = new MemberService();
+    // test 간에 영향을 받지 않도록 메모리 clear를 해줘야함
+    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
+
+     @AfterEach // callback 메서드 : 메서드 끝날떄마다 수행
+    public void afterEach() {
+         memberRepository.clearStore();
+         // DB 값 날려줌
+    }
+
 
     @Test
     void join() {
         // given
         Member member = new Member();
-        member.setName("Hello");
+        member.setName("spring");
 
         // when
         Long saveId = memberService.join(member);
