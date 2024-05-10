@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 // @애노테이션으로 인해 Spring Container에 Service를 등록해줌
-@Service
+// @Service
 public class MemberService {
 
 
