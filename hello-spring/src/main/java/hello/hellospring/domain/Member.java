@@ -16,7 +16,7 @@ public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="username") // db column name mapping
+    @Column(name="Name") // db column name mapping
     private String name;
 
     public Long getId() {
