@@ -3,15 +3,14 @@ package hello.core.order;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import hello.core.appConfig;
+import hello.core.AppConfig;
 
 public class OderServiceTest {
 
-    MemberService memberService = new appConfig().memberService();
-    OrderService orderService = new appConfig().orderService();
+    MemberService memberService = new AppConfig().memberService();
+    OrderService orderService = new AppConfig().orderService();
 
     @Test
     void createOrder(){
