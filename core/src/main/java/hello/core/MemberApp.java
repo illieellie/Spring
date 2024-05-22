@@ -7,7 +7,8 @@ import hello.core.member.MemberServiceImpl;
 import org.springframework.boot.SpringApplication;
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+
+        MemberService memberService = new appConfig().memberService();
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
 

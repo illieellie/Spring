@@ -1,10 +1,10 @@
 package hello.core.member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import hello.core.appConfig;
 
 public class MemberServiceTest {
-    MemberService memberService = new MemberServiceImpl();
-
+    MemberService memberService = new appConfig().memberService();
 
     @Test
     void join(){

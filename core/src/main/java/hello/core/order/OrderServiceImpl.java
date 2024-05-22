@@ -9,14 +9,20 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
 
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
     // 아래와 같이 코드를 수정해서 정책을 바꿀 수 있음
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     // OCP, DIP와 같은 객체지향 설계 원칙을 준수했을까?
     // DIP 위배 -> OderServiceImpl(주문 서비스 클라이언트)는 추상(인터페이스)뿐만 아니라 구현체 클래스에도 의존하고 있다.
     // OCP 위배 -> 정책을 변경하려면 클라이언트 코드도 수정이 필요하여 위배
+
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

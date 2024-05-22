@@ -6,11 +6,12 @@ import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import hello.core.appConfig;
 
 public class OderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService = new appConfig().memberService();
+    OrderService orderService = new appConfig().orderService();
 
     @Test
     void createOrder(){
