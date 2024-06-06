@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 // 필요한것의 생성자를 만들겠다 -> final 필드의 생성자 자동 생성
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-//    @Autowired
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = rateDiscountPolicy; // 파라미터명으로 매칭 가능
+    }
     // 아래와 같이 코드를 수정해서 정책을 바꿀 수 있음
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
