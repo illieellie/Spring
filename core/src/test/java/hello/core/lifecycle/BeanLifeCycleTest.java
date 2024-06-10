@@ -20,14 +20,13 @@ public class BeanLifeCycleTest {
     @Configuration
     static class LifeCycleConfig{
         // 초기화, 종료 콜백 메서드 지정
-        @Bean(initMethod = "init", destroyMethod = "close")
+        @Bean
         public NetworkClient networkClient(){
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
             // 객체 생성을 하고 set으로 url을 지정해줬기 때문에 connet 메소드에서는 url이 null
             return networkClient;
         }
-
 
     }
 }
