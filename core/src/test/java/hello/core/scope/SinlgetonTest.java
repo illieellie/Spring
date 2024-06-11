@@ -17,10 +17,11 @@ public class SinlgetonTest {
         System.out.println("singletonBean1 = " + bean1);
         System.out.println("singletonBean2 = " + bean2);
         // 동일한 빈이 출력되고 init, destroy 메서드 모두 호출
+        ac.close();
 
     }
 
-    //@Configuration -> 쓰지 않아도 위에서 직접 넣어주면 Configuration으로 인식한다.
+    //@Component -> 쓰지 않아도 위에서 직접 넣어주면 컴포넌트 대상 자체로 인식해서 등록.
     @Scope("singleton")
     static class SingletonBean{
         @PostConstruct
